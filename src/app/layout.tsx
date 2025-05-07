@@ -1,18 +1,26 @@
+import type { Metadata } from "next";
+import { Inter } from "next/font/google";
 import "./globals.css";
 
-export const metadata = {
-  title: "WiFi QR Generator",
-  description: "Generate QR codes for your WiFi network",
+const inter = Inter({ subsets: ["latin"] });
+
+export const metadata: Metadata = {
+  title: "WIFI QR Code Generator",
+  description: "Generate WIFI QR codes easily",
 };
 
 export default function RootLayout({
   children,
-}: {
+}: Readonly<{
   children: React.ReactNode;
-}) {
+}>) {
   return (
     <html lang="ko">
-      <body>{children}</body>
+      <body className={inter.className}>
+        <main className="container mx-auto p-4">
+          {children}
+        </main>
+      </body>
     </html>
   );
 }

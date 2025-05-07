@@ -1,7 +1,7 @@
 ---
-description: This rule explains how to create new .mdc project rule files for the Cursor agent.
+description: 
 globs: 
-alwaysApply: true
+alwaysApply: false
 ---
 
 # Cursor Rules Location
