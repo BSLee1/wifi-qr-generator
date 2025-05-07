@@ -1,0 +1,43 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+# 스타일링 가이드라인
+
+## Tailwind CSS 사용
+- 모든 스타일링은 Tailwind CSS 클래스를 사용합니다.
+- 인라인 스타일은 특별한 경우에만 사용합니다.
+- 반응형 디자인은 Tailwind의 브레이크포인트 접두사를 사용합니다.
+
+## 클래스 네이밍
+- 클래스는 기능별로 그룹화하여 작성합니다.
+- 레이아웃 → 스타일 → 상태 순서로 작성합니다.
+- 긴 클래스 목록은 여러 줄로 나누어 작성합니다.
+
+## 예시
+```tsx
+// 좋은 예시
+<div
+  className="
+    flex min-h-screen
+    items-center justify-center
+    bg-gray-100
+    hover:bg-gray-200
+  "
+>
+
+// 나쁜 예시
+<div className="flex min-h-screen items-center justify-center bg-gray-100 hover:bg-gray-200">
+```
+
+## 반응형 디자인
+- 모바일 퍼스트 접근 방식을 사용합니다.
+- 기본 스타일은 모바일용으로 작성하고, 브레이크포인트에서 확장합니다.
+- 주요 브레이크포인트:
+  - sm: 640px
+  - md: 768px
+  - lg: 1024px
+  - xl: 1280px
+  - 2xl: 1536px
+

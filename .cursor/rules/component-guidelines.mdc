@@ -1,0 +1,43 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+# 컴포넌트 작성 가이드라인
+
+## 컴포넌트 구조
+- 모든 컴포넌트는 함수형 컴포넌트로 작성합니다.
+- Props는 TypeScript 인터페이스로 타입을 정의합니다.
+- 컴포넌트 파일은 하나의 컴포넌트만 export 합니다.
+
+## 네이밍 컨벤션
+- 컴포넌트 이름은 PascalCase를 사용합니다.
+- Props 인터페이스는 컴포넌트 이름 + Props로 작성합니다.
+- 이벤트 핸들러는 handle 접두사를 사용합니다.
+
+## 코드 스타일
+- JSX 태그는 self-closing 태그를 사용합니다.
+- Props는 한 줄에 하나씩 작성합니다.
+- 복잡한 조건부 렌더링은 별도의 변수로 분리합니다.
+
+## 예시
+```tsx
+interface ButtonProps {
+  onClick: () => void;
+  children: React.ReactNode;
+}
+
+const Button = ({ onClick, children }: ButtonProps) => {
+  return (
+    <button
+      onClick={onClick}
+      className="px-4 py-2 bg-blue-500 text-white rounded"
+    >
+      {children}
+    </button>
+  );
+};
+
+export default Button;
+```
+
