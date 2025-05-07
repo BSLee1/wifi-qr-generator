@@ -1,0 +1,11 @@
+{
+  "rules": [
+    {
+      "name": "shadcn-ui 패키지 사용 금지",
+      "description": "shadcn-ui 패키지는 더 이상 사용되지 않습니다. 대신 'shadcn' 패키지를 사용해야 합니다.",
+      "pattern": "npx shadcn-ui@latest",
+      "replacement": "npx shadcn@latest",
+      "severity": "error"
+    }
+  ]
+} 
