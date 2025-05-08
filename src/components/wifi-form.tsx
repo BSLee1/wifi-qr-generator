@@ -40,7 +40,7 @@ export function WifiForm({ formInstance, onSubmit }: WifiFormProps) {
             <FormItem>
               <FormLabel>브랜드 이름</FormLabel>
               <FormControl>
-                <Input placeholder="예: Toycrane Cafe" {...field} />
+                <Input placeholder="예: Bslee Cafe" {...field} />
               </FormControl>
               <FormDescription>
                 카드 하단에 표시될 브랜드 이름입니다.
@@ -56,7 +56,7 @@ export function WifiForm({ formInstance, onSubmit }: WifiFormProps) {
             <FormItem>
               <FormLabel>네트워크 이름 (SSID)</FormLabel>
               <FormControl>
-                <Input placeholder="예: Toycrane_Guest_WiFi" {...field} />
+                <Input placeholder="예: Bslee_Guest_WiFi" {...field} />
               </FormControl>
               <FormDescription>
                 WIFI 네트워크의 이름 (SSID)입니다.

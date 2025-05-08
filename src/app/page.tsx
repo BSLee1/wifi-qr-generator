@@ -19,7 +19,7 @@ export default function HomePage() {
         </Button>
       </Link>
       <div className="mt-12 text-sm text-muted-foreground">
-        <p>이 서비스는 <a href="https://toycrane.com" target="_blank" rel="noopener noreferrer" className="underline hover:text-primary">toycrane</a>에 의해 만들어졌습니다.</p>
+        <p>이 서비스는 <a href="https://bslee.com" target="_blank" rel="noopener noreferrer" className="underline hover:text-primary">bslee</a>에 의해 만들어졌습니다.</p>
       </div>
     </section>
   );

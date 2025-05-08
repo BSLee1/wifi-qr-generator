@@ -43,7 +43,7 @@ export function WifiCard({ brandName, bgColor, qrCodeComponent }: WifiCardProps)
           {brandName || "브랜드 이름"}
         </p>
         <p className="text-xs font-medium opacity-75 absolute bottom-2 right-3">
-          by toycrane
+          by bslee
         </p>
       </footer>
     </div>
