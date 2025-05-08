@@ -1,7 +1,6 @@
 "use client";
 
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
+import { UseFormReturn } from "react-hook-form";
 import * as z from "zod";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -15,37 +14,27 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 
-const wifiFormSchema = z.object({
+export const wifiFormSchema = z.object({
   brandName: z.string().min(1, "브랜드 이름을 입력해주세요.").max(50, "브랜드 이름은 50자 이내로 입력해주세요."),
   ssid: z.string().min(1, "네트워크 이름(SSID)을 입력해주세요.").max(32, "네트워크 이름(SSID)은 32자 이내로 입력해주세요."),
   password: z.string().min(8, "비밀번호는 8자 이상 입력해주세요.").max(63, "비밀번호는 63자 이내로 입력해주세요."),
-  bgColor: z.string().regex(/^#[0-9A-Fa-f]{6}$/, "유효한 HEX 색상 코드를 입력해주세요. (예: #RRGGBB)"),
+  bgColor: z.string().regex(/^#[0-9A-Fa-f]{6}$/, "유효한 HEX 색상 코드를 입력해주세요. (예: #RRGGBB)").default("#FFFFFF"),
 });
 
 export type WifiFormData = z.infer<typeof wifiFormSchema>;
+export type WifiFormInput = z.input<typeof wifiFormSchema>;
 
 interface WifiFormProps {
+  formInstance: UseFormReturn<WifiFormInput, any, WifiFormData>;
   onSubmit: (data: WifiFormData) => void;
-  defaultValues?: Partial<WifiFormData>;
 }
 
-export function WifiForm({ onSubmit, defaultValues }: WifiFormProps) {
-  const form = useForm<WifiFormData>({
-    resolver: zodResolver(wifiFormSchema),
-    defaultValues: {
-      brandName: "",
-      ssid: "",
-      password: "",
-      bgColor: "#FFFFFF",
-      ...defaultValues,
-    },
-  });
-
+export function WifiForm({ formInstance, onSubmit }: WifiFormProps) {
   return (
-    <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+    <Form {...formInstance}>
+      <form onSubmit={formInstance.handleSubmit(onSubmit)} className="space-y-8">
         <FormField
-          control={form.control}
+          control={formInstance.control}
           name="brandName"
           render={({ field }) => (
             <FormItem>
@@ -61,7 +50,7 @@ export function WifiForm({ onSubmit, defaultValues }: WifiFormProps) {
           )}
         />
         <FormField
-          control={form.control}
+          control={formInstance.control}
           name="ssid"
           render={({ field }) => (
             <FormItem>
@@ -77,7 +66,7 @@ export function WifiForm({ onSubmit, defaultValues }: WifiFormProps) {
           )}
         />
         <FormField
-          control={form.control}
+          control={formInstance.control}
           name="password"
           render={({ field }) => (
             <FormItem>
@@ -93,15 +82,31 @@ export function WifiForm({ onSubmit, defaultValues }: WifiFormProps) {
           )}
         />
         <FormField
-          control={form.control}
+          control={formInstance.control}
           name="bgColor"
           render={({ field }) => (
             <FormItem>
               <FormLabel>카드 배경색</FormLabel>
               <FormControl>
                 <div className="flex items-center gap-2">
-                  <Input type="color" {...field} className="w-12 h-10 p-1" />
-                  <Input placeholder="#FFFFFF" {...field} />
+                  <Input 
+                    type="color" 
+                    value={field.value || "#FFFFFF"}
+                    onChange={(e) => field.onChange(e.target.value)}
+                    className="w-12 h-10 p-1 cursor-pointer"
+                  />
+                  <Input 
+                    placeholder="#FFFFFF" 
+                    {...field}
+                    value={field.value || ""}
+                    onChange={(e) => {
+                      let value = e.target.value;
+                      if (value && !value.startsWith("#")) {
+                        value = "#" + value;
+                      }
+                      field.onChange(value);
+                    }}
+                  />
                 </div>
               </FormControl>
               <FormDescription>
@@ -111,7 +116,7 @@ export function WifiForm({ onSubmit, defaultValues }: WifiFormProps) {
             </FormItem>
           )}
         />
-        <Button type="submit">QR 카드 생성</Button>
+        <Button type="submit">QR 카드 생성 준비</Button>
       </form>
     </Form>
   );
